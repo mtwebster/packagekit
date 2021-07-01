@@ -497,7 +497,8 @@ bool AptCacheFile::tryToInstall(pkgProblemResolver &Fix,
 }
 
 void AptCacheFile::tryToRemove(pkgProblemResolver &Fix,
-                               const pkgCache::VerIterator &ver)
+                               const pkgCache::VerIterator &ver,
+                               bool purge)
 {
     pkgCache::PkgIterator Pkg = ver.ParentPkg();
 
@@ -515,7 +516,7 @@ void AptCacheFile::tryToRemove(pkgProblemResolver &Fix,
     Fix.Remove(Pkg);
     // TODO this is false since PackageKit can't
     // tell it want's o purge
-    GetDepCache()->MarkDelete(Pkg, false);
+    GetDepCache()->MarkDelete(Pkg, purge);
 }
 
 std::string AptCacheFile::debParser(std::string descr)

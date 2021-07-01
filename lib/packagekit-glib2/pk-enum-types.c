@@ -96,6 +96,7 @@ pk_role_enum_get_type (void)
             { PK_ROLE_ENUM_GET_FILES_LOCAL, "PK_ROLE_ENUM_GET_FILES_LOCAL", "get-files-local" },
             { PK_ROLE_ENUM_REPO_REMOVE, "PK_ROLE_ENUM_REPO_REMOVE", "repo-remove" },
             { PK_ROLE_ENUM_UPGRADE_SYSTEM, "PK_ROLE_ENUM_UPGRADE_SYSTEM", "upgrade-system" },
+            { PK_ROLE_ENUM_PURGE_PACKAGES, "PK_ROLE_ENUM_PURGE_PACKAGES", "purge-packages" },
             { PK_ROLE_ENUM_LAST, "PK_ROLE_ENUM_LAST", "last" },
             { 0, NULL, NULL }
         };
@@ -148,6 +149,7 @@ pk_status_enum_get_type (void)
             { PK_STATUS_ENUM_CHECK_LIBRARIES, "PK_STATUS_ENUM_CHECK_LIBRARIES", "check-libraries" },
             { PK_STATUS_ENUM_COPY_FILES, "PK_STATUS_ENUM_COPY_FILES", "copy-files" },
             { PK_STATUS_ENUM_RUN_HOOK, "PK_STATUS_ENUM_RUN_HOOK", "run-hook" },
+            { PK_STATUS_ENUM_PURGE, "PK_STATUS_ENUM_PURGE", "purge" },
             { PK_STATUS_ENUM_LAST, "PK_STATUS_ENUM_LAST", "last" },
             { 0, NULL, NULL }
         };
@@ -345,6 +347,7 @@ pk_error_enum_get_type (void)
             { PK_ERROR_ENUM_UNFINISHED_TRANSACTION, "PK_ERROR_ENUM_UNFINISHED_TRANSACTION", "unfinished-transaction" },
             { PK_ERROR_ENUM_LOCK_REQUIRED, "PK_ERROR_ENUM_LOCK_REQUIRED", "lock-required" },
             { PK_ERROR_ENUM_REPO_ALREADY_SET, "PK_ERROR_ENUM_REPO_ALREADY_SET", "repo-already-set" },
+            { PK_ERROR_ENUM_PACKAGE_FAILED_TO_PURGE, "PK_ERROR_ENUM_PACKAGE_FAILED_TO_PURGE", "package-failed-to-purge" },
             { PK_ERROR_ENUM_LAST, "PK_ERROR_ENUM_LAST", "last" },
             { 0, NULL, NULL }
         };
@@ -455,6 +458,7 @@ pk_info_enum_get_type (void)
             { PK_INFO_ENUM_UNTRUSTED, "PK_INFO_ENUM_UNTRUSTED", "untrusted" },
             { PK_INFO_ENUM_TRUSTED, "PK_INFO_ENUM_TRUSTED", "trusted" },
             { PK_INFO_ENUM_UNAVAILABLE, "PK_INFO_ENUM_UNAVAILABLE", "unavailable" },
+            { PK_INFO_ENUM_PURGING, "PK_INFO_ENUM_PURGING", "purging" },
             { PK_INFO_ENUM_LAST, "PK_INFO_ENUM_LAST", "last" },
             { 0, NULL, NULL }
         };

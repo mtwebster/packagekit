@@ -140,7 +140,8 @@ public:
                       bool BrokenFix, bool autoInst, bool preserveAuto);
 
     void tryToRemove(pkgProblemResolver &Fix,
-                     const pkgCache::VerIterator &ver);
+                     const pkgCache::VerIterator &ver,
+                     bool purge);
 
 private:
     void buildPkgRecords();

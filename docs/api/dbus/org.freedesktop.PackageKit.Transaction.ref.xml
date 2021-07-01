@@ -43,6 +43,10 @@
                     in  'as' package_ids,
                     in  'b'  allow_deps,
                     in  'b'  autoremove)
+<link linkend="Transaction.PurgePackages">PurgePackages</link>     (in  't'  transaction_flags,
+                    in  'as' package_ids,
+                    in  'b'  allow_deps,
+                    in  'b'  autoremove)
 <link linkend="Transaction.RepoEnable">RepoEnable</link>         (in  's'  repo_id,
                     in  'b'  enabled)
 <link linkend="Transaction.RepoSetData">RepoSetData</link>        (in  's'  repo_id,
@@ -668,6 +672,53 @@
             
               Either true or false.
               If true allow other packages to be removed with the package,
+              but false should cause the script to abort if other packages
+              are dependant on the package.
+            
+          </simpara></listitem></varlistentry><varlistentry><term><parameter>autoremove</parameter>:</term><listitem><simpara>
+            
+              Either true or false.
+              This option is only really interesting on embedded devices with a limited amount of
+              flash storage.
+              It suggests to the packagekit backend that dependencies installed at the same time as
+              the package should also be removed if they are not required by anything else.
+              For instance, if you install OpenOffice, it might download libneon as a dependency.
+              When auto_remove is set to true, and you remove OpenOffice then
+              libneon will also get removed automatically.
+            
+          </simpara></listitem></varlistentry></variablelist><para role="permission">Callers need the org.freedesktop.packagekit.remove</para><refsect2><title><anchor role="function" id="Transaction.PurgePackages"/>PurgePackages ()</title><indexterm><primary>PurgePackages</primary><secondary>Transaction</secondary></indexterm><programlisting>PurgePackages (in  't'  transaction_flags,
+                in  'as' package_ids,
+                in  'b'  allow_deps,
+                in  'b'  autoremove)</programlisting></refsect2>
+          <para>
+            This method removes packages from the local system, and removes any configuration files.
+          </para>
+          <para>
+            This method typically emits
+            Progress,
+            Status and
+            Error and
+            Package.
+          </para>
+          <para>
+            Package enumerated types should be
+            downloading,
+            updating,
+            installing or
+            removing.
+          </para>
+        <variablelist role="params"><varlistentry><term><parameter>transaction_flags</parameter>:</term><listitem><simpara>
+            
+              If the transaction should be simulated or prepared.
+            
+          </simpara></listitem></varlistentry><varlistentry><term><parameter>package_ids</parameter>:</term><listitem><simpara>
+            
+              An array of package IDs.
+            
+          </simpara></listitem></varlistentry><varlistentry><term><parameter>allow_deps</parameter>:</term><listitem><simpara>
+            
+              Either true or false.
+              If true allow other packages to be removed with the package, along with their configuration files,
               but false should cause the script to abort if other packages
               are dependant on the package.
             

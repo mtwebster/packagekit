@@ -97,6 +97,7 @@ bool AptIntf::init(gchar **localDebs)
     case PK_ROLE_ENUM_INSTALL_PACKAGES:
     case PK_ROLE_ENUM_INSTALL_FILES:
     case PK_ROLE_ENUM_REMOVE_PACKAGES:
+    case PK_ROLE_ENUM_PURGE_PACKAGES:
     case PK_ROLE_ENUM_UPDATE_PACKAGES:
         withLock = true;
         break;
@@ -2004,6 +2005,22 @@ void AptIntf::updateInterface(int fd, int writeFd)
                         emitPackage(ver, PK_INFO_ENUM_REMOVING);
                         emitPackageProgress(ver, PK_STATUS_ENUM_REMOVE, m_lastSubProgress);
                     }
+                } else if (starts_with(str, "Purging")) {
+                    // cout << "Found Removing! " << line << endl;
+                    if (m_lastSubProgress >= 100 && !m_lastPackage.empty()) {
+                        // cout << "FINISH the last package: " << m_lastPackage << endl;
+                        const pkgCache::VerIterator &ver = findTransactionPackage(m_lastPackage);
+                        if (!ver.end()) {
+                            emitPackage(ver, PK_INFO_ENUM_FINISHED);
+                        }
+                    }
+                    m_lastSubProgress += 25;
+
+                    const pkgCache::VerIterator &ver = findTransactionPackage(pkg);
+                    if (!ver.end()) {
+                        emitPackage(ver, PK_INFO_ENUM_PURGING);
+                        emitPackageProgress(ver, PK_STATUS_ENUM_PURGE, m_lastSubProgress);
+                    }
                 } else if (starts_with(str, "Installed") ||
                            starts_with(str, "Removed")) {
                     // cout << "Found FINISHED! " << line << endl;
@@ -2209,7 +2226,7 @@ PkgList AptIntf::resolveLocalFiles(gchar **localDebs)
     return ret;
 }
 
-bool AptIntf::runTransaction(const PkgList &install, const PkgList &remove, const PkgList &update,
+bool AptIntf::runTransaction(const PkgList &install, const PkgList &remove, const PkgList &purge, const PkgList &update,
                              bool fixBroken, PkBitfield flags, bool autoremove)
 {
     //cout << "runTransaction" << simulate << remove << endl;
@@ -2267,7 +2284,15 @@ bool AptIntf::runTransaction(const PkgList &install, const PkgList &remove, cons
                 break;
             }
 
-            m_cache->tryToRemove(Fix, verIt);
+            m_cache->tryToRemove(Fix, verIt, false);
+        }
+
+        for (const pkgCache::VerIterator &verIt : purge) {
+            if (m_cancel) {
+                break;
+            }
+
+            m_cache->tryToRemove(Fix, verIt, true);
         }
 
         // Call the scored problem resolver
@@ -2290,7 +2315,7 @@ bool AptIntf::runTransaction(const PkgList &install, const PkgList &remove, cons
         for (pkgCache::PkgIterator pkg = (*m_cache)->PkgBegin(); ! pkg.end(); ++pkg) {
             const pkgCache::VerIterator &ver = pkg.CurrentVer();
             if (!ver.end() && !initial_garbage.contains(pkg) && m_cache->isGarbage(pkg))
-                m_cache->tryToRemove (Fix, ver);
+                m_cache->tryToRemove (Fix, ver, purge.size() > 0);
         }
     }
 
