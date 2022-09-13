@@ -1,5 +1,2 @@
 policy.diff
-01_add-missing-pk-debconf-service-files.patch
-02_aptcc-fix-locale-set.patch
-CVE-2020-16121.patch
-CVE-2020-16122.patch
+01_fix-single-candidate-pkgid-emission.patch

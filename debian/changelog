@@ -1,10 +1,173 @@
-packagekit (1.1.13-3) UNRELEASED; urgency=medium
+packagekit (1.2.5-3) unstable; urgency=medium
 
-  * Initial commits
+  * Rebase to 1.2.5
 
- -- Michael Webster <miketwebster@gmail.com>  Wed, 30 Jun 2021 12:18:29 -0400
+ --  Michael Webster <miketwebster@gmail.com>  Tue, 13 Sep 2022 13:02:56 -0400
 
-packagekit (1.1.13-2ubuntu1.1) focal-security; urgency=medium
+packagekit (1.2.5-2ubuntu2) jammy; urgency=medium
+
+  * Update fix-single-candidate-pkgid-emission.patch. (LP: #1963904)
+
+ -- Brian Murray <brian@ubuntu.com>  Mon, 14 Mar 2022 12:11:19 -0700
+
+packagekit (1.2.5-2ubuntu1) jammy; urgency=low
+
+  * Merge from Debian unstable (LP: #1961837). Remaining changes:
+    - debian/control: Added recommends for packagekit-installer
+
+ -- Julian Andres Klode <juliank@ubuntu.com>  Wed, 23 Feb 2022 11:10:46 +0100
+
+packagekit (1.2.5-2) unstable; urgency=medium
+
+  * Add fix-single-candidate-pkgid-emission.patch
+    - Unblock updates by emitting package-IDs again even if there
+      is just one candidate available.
+
+ -- Matthias Klumpp <mak@debian.org>  Tue, 22 Feb 2022 23:48:44 +0100
+
+packagekit (1.2.5-1ubuntu1) jammy; urgency=low
+
+  * Merge from Debian unstable. Remaining changes:
+    - debian/control: Added recommends for packagekit-installer
+  * 1.2.5 fixes manually installed kernel updates (LP: #1914278)
+
+ -- Julian Andres Klode <juliank@ubuntu.com>  Mon, 21 Feb 2022 10:40:12 +0100
+
+packagekit (1.2.5-1) unstable; urgency=medium
+
+  * New upstream version: 1.2.5
+    Notable changes:
+    - aptcc: Do not mark all updates as manually installed
+    - aptcc: Apply auto/manual state from previously resolved pkgids
+      when needed
+    - aptcc: Attempt to fix broken packages again when system
+      repair is requested
+    - aptcc: Correctly list all the available package versions
+    - aptcc: Display an excerpt of dpkg's log on error instead of not
+      failing at all
+    - aptcc: Emit only the first, likely highest-quality error when dpkg fails
+    - aptcc: Make package downgrades work again
+    - aptcc: Return local file listings in the same format as installed ones
+    - Add flags to D-Bus offline invoking methods
+    - Properly handle allow-reinstall flag for installations
+    - Provide better error message if trying to install an installed package
+    - Wait until online to activate systemd service
+  * policy: Allow any inactive user to refresh the package cache
+    as well (Closes: #965030)
+  * Update symbols file
+  * Mark d/rules as not requiring root
+  * Bump dh compat level to 13
+  * Drop some no longer needed breaks constraints
+  * policy: Allow any user to trigger offline updates
+    by default (Closes: #1003141)
+  * Remove 2 obsolete maintscript entries in 1 files (thanks, Janitor!)
+  * Set upstream metadata fields: Bug-Database, Contact (thanks, Janitor!)
+
+ -- Matthias Klumpp <mak@debian.org>  Thu, 17 Feb 2022 21:40:18 +0100
+
+packagekit (1.2.4-1ubuntu2) jammy; urgency=medium
+
+  * No-change rebuild to update maintainer scripts, see LP: 1959054
+
+ -- Dave Jones <dave.jones@canonical.com>  Wed, 16 Feb 2022 17:17:28 +0000
+
+packagekit (1.2.4-1ubuntu1) jammy; urgency=low
+
+  * Merge from Debian unstable. Remaining changes:
+    - debian/control: Added recommends for packagekit-installer
+  * Dropped wait-until-online-to-activate-systemd-service.patch, it was
+    not the root cause and did not fix the issue after all
+
+ -- Julian Andres Klode <juliank@ubuntu.com>  Thu, 13 Jan 2022 17:51:50 +0100
+
+packagekit (1.2.4-1) unstable; urgency=medium
+
+  * New upstream version: 1.2.4
+    - Resolves FTBFS with newer Meson versions (Closes: #998578)
+  * Drop no-crash-pk_dbus_get_uid.patch: Applied upstream
+  * Update symbols file
+
+ -- Matthias Klumpp <mak@debian.org>  Sun, 07 Nov 2021 20:04:15 +0100
+
+packagekit (1.2.2-2ubuntu3) impish; urgency=medium
+
+  * Refresh wait-until-online-to-activate-systemd-service.patch with fixes
+    (LP: #1943189)
+
+ -- Julian Andres Klode <juliank@ubuntu.com>  Mon, 27 Sep 2021 10:15:19 +0200
+
+packagekit (1.2.2-2ubuntu2) impish; urgency=medium
+
+  * Add wait-until-online-to-activate-systemd-service.patch: Wait until
+    after network-online.target to start packagekitd so it knows if it is
+    online, thanks to Erich Eickmeyer for the patch (LP: #1943189)
+
+ -- Julian Andres Klode <juliank@ubuntu.com>  Fri, 17 Sep 2021 17:40:40 +0200
+
+packagekit (1.2.2-2ubuntu1) hirsute; urgency=low
+
+  * Merge from Debian unstable. Remaining changes:
+    - debian/control: Added recommends for packagekit-installer
+
+ -- Julian Andres Klode <juliank@ubuntu.com>  Wed, 23 Dec 2020 13:47:51 +0100
+
+packagekit (1.2.2-2) unstable; urgency=medium
+
+  [ Laurent Bigonville ]
+  * debian/control: Build-Depend on libplymouth-dev (>= 0.9.5) and
+    Breaks against previous version of the plymouth package
+  * debian/packagekit.links: Ensure that the packagekit-offline-update service
+    is started in the system-update.target.wants target (Closes: #977876)
+
+ -- Matthias Klumpp <mak@debian.org>  Tue, 22 Dec 2020 22:14:10 +0100
+
+packagekit (1.2.2-1) unstable; urgency=medium
+
+  * New upstream version: 1.2.2
+  * Unconditionally disable offline-updates on non-Linux architectures
+  * Drop all patches: Applied upstream
+  * Add no-crash-pk_dbus_get_uid.patch: Don't crash when calling
+    pk_dbus_get_uid() before D-Bus is set up (Closes: #974826).
+
+ -- Matthias Klumpp <mak@debian.org>  Tue, 22 Dec 2020 12:48:56 +0100
+
+packagekit (1.2.1-1ubuntu1) hirsute; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - debian/control: Added recommends for packagekit-installer
+
+ -- Julian Andres Klode <juliank@ubuntu.com>  Mon, 09 Nov 2020 11:26:18 +0100
+
+packagekit (1.2.1-1) unstable; urgency=medium
+
+  [ Matthias Klumpp ]
+  * New upstream version: 1.2.1
+  * Drop all previous patches: Applied upstream.
+  * Add aptcc-use-pkgconfig.patch: Fix build with newer APT versions,
+    and simplify dependency on apt-pkg .
+  * Add aptcc-build-debconfhelper.patch: Build debconf socket-activated
+    helper again now that PK builds with Meson.
+  * Add aptcc-CVE-2020-16122.patch: Always distrust local .deb packages
+  * Add fix-CVE-2020-16121.patch: Resolve information disclosure in
+    InstallFiles, GetFilesLocal and GetDetailsLocal (Closes: #972229)
+  * Add test-install-missing-files.patch: Install some missing files used
+    by the test backend that have been forgotten in the Meson transition.
+  * Adjust packaging for using the Meson build system
+  * Cleanup d/rules, a lot of files we previously removed are gone now
+    by upstream default
+  * d/control: Update dependencies for new release
+  * Drop build-dep on xmlto and docbook-utils (no longer needed)
+  * Remove last remnants of the GTK+2 plugin (Closes: #967678)
+  * Update .symbols file
+
+  [ Laurent Bigonville ]
+  * Do not try to install pk-debconf-helper on non-linux architectures
+    (Closes: #952872)
+  * Move daemon and helper binaries to /usr/libexec
+
+ -- Matthias Klumpp <mak@debian.org>  Wed, 21 Oct 2020 18:26:38 +0200
+
+packagekit (1.1.13-2ubuntu2) groovy; urgency=medium
 
   * SECURITY UPDATE: information disclosure (LP: #1888887)
     - debian/patches/CVE-2020-16121.patch: hide failures behind a single
@@ -579,7 +742,7 @@ packagekit (0.8.6-1) experimental; urgency=low
   * Don't create extra package for offline-updates
   * Make PackageKit work on non-Linux archs again
 
- -- Matthias Klumpp <matthias@tenstral.net>  Tue, 28 Nov 2012 14:12:40 +0100
+ -- Matthias Klumpp <matthias@tenstral.net>  Wed, 28 Nov 2012 14:12:40 +0100
 
 packagekit (0.8.4-1) experimental; urgency=low
 
@@ -1238,3 +1401,4 @@ packagekit (0.6.8-1) unstable; urgency=low
   * Initial release (Closes: #468132)
 
  -- Matthias Klumpp <matthias@nlinux.org>  Wed, 25 Aug 2010 19:40:12 +0200
+

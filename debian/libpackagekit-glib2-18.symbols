@@ -100,12 +100,15 @@ libpackagekit-glib2.so.18 libpackagekit-glib2-18 #MINVER#
  pk_client_set_cache_age@Base 0.9.4
  pk_client_set_interactive@Base 0.9.4
  pk_client_set_locale@Base 0.9.4
+ pk_client_state_get_type@Base 1.2.4
  pk_client_update_packages@Base 0.9.4
  pk_client_update_packages_async@Base 0.9.4
  pk_client_upgrade_system@Base 1.0.11
  pk_client_upgrade_system_async@Base 1.0.11
  pk_client_what_provides@Base 0.9.4
  pk_client_what_provides_async@Base 0.9.4
+ pk_console_get_number@Base 1.2.1
+ pk_console_get_prompt@Base 1.2.1
  pk_control_can_authorize_async@Base 0.9.4
  pk_control_can_authorize_finish@Base 0.9.4
  pk_control_error_get_type@Base 0.9.4
@@ -143,6 +146,7 @@ libpackagekit-glib2.so.18 libpackagekit-glib2-18 #MINVER#
  pk_desktop_new@Base 0.9.4
  pk_desktop_open_database@Base 0.9.4
  pk_details_get_description@Base 0.9.4
+ pk_details_get_download_size@Base 1.2.4
  pk_details_get_group@Base 0.9.4
  pk_details_get_license@Base 0.9.4
  pk_details_get_package_id@Base 0.9.4
@@ -229,9 +233,12 @@ libpackagekit-glib2.so.18 libpackagekit-glib2-18 #MINVER#
  pk_offline_auth_trigger@Base 1.0.0
  pk_offline_auth_trigger_upgrade@Base 1.1.0
  pk_offline_cancel@Base 1.0.0
+ pk_offline_cancel_with_flags@Base 1.2.5
  pk_offline_clear_results@Base 1.0.0
+ pk_offline_clear_results_with_flags@Base 1.2.5
  pk_offline_error_get_type@Base 1.0.0
  pk_offline_error_quark@Base 1.0.0
+ pk_offline_flags_get_type@Base 1.2.5
  pk_offline_get_action@Base 1.0.0
  pk_offline_get_action_monitor@Base 1.0.0
  pk_offline_get_prepared_ids@Base 1.0.0
@@ -245,6 +252,8 @@ libpackagekit-glib2.so.18 libpackagekit-glib2-18 #MINVER#
  pk_offline_get_results_mtime@Base 1.0.0
  pk_offline_trigger@Base 1.0.0
  pk_offline_trigger_upgrade@Base 1.1.0
+ pk_offline_trigger_upgrade_with_flags@Base 1.2.5
+ pk_offline_trigger_with_flags@Base 1.2.5
  pk_package_equal@Base 0.9.4
  pk_package_equal_id@Base 0.9.4
  pk_package_get_arch@Base 0.9.4
@@ -254,6 +263,7 @@ libpackagekit-glib2.so.18 libpackagekit-glib2-18 #MINVER#
  pk_package_get_name@Base 0.9.4
  pk_package_get_summary@Base 0.9.4
  pk_package_get_type@Base 0.9.4
+ pk_package_get_update_severity@Base 1.2.4
  pk_package_get_version@Base 0.9.4
  pk_package_id_build@Base 0.9.4
  pk_package_id_check@Base 0.9.4
@@ -301,8 +311,16 @@ libpackagekit-glib2.so.18 libpackagekit-glib2-18 #MINVER#
  pk_package_set_id@Base 0.9.4
  pk_package_set_info@Base 0.9.4
  pk_package_set_summary@Base 0.9.4
+ pk_package_set_update_severity@Base 1.2.4
  pk_polkit_agent_close@Base 0.9.4
  pk_polkit_agent_open@Base 0.9.4
+ pk_progress_bar_end@Base 1.2.1
+ pk_progress_bar_get_type@Base 1.2.1
+ pk_progress_bar_new@Base 1.2.1
+ pk_progress_bar_set_padding@Base 1.2.1
+ pk_progress_bar_set_percentage@Base 1.2.1
+ pk_progress_bar_set_size@Base 1.2.1
+ pk_progress_bar_start@Base 1.2.1
  pk_progress_get_allow_cancel@Base 1.1.0
  pk_progress_get_caller_active@Base 1.1.0
  pk_progress_get_download_size_remaining@Base 1.1.0
@@ -397,6 +415,7 @@ libpackagekit-glib2.so.18 libpackagekit-glib2-18 #MINVER#
  pk_source_new@Base 0.9.4
  pk_status_enum_from_string@Base 0.9.4
  pk_status_enum_get_type@Base 0.9.4
+ pk_status_enum_to_localised_text@Base 1.2.1
  pk_status_enum_to_string@Base 0.9.4
  pk_task_depends_on_async@Base 0.9.4
  pk_task_depends_on_sync@Base 0.9.4
@@ -453,6 +472,8 @@ libpackagekit-glib2.so.18 libpackagekit-glib2-18 #MINVER#
  pk_task_set_only_download@Base 0.9.4
  pk_task_set_only_trusted@Base 0.9.5
  pk_task_set_simulate@Base 0.9.4
+ pk_task_text_get_type@Base 1.2.1
+ pk_task_text_new@Base 1.2.1
  pk_task_update_packages_async@Base 0.9.4
  pk_task_update_packages_sync@Base 0.9.4
  pk_task_upgrade_system_async@Base 1.1.0
@@ -461,6 +482,8 @@ libpackagekit-glib2.so.18 libpackagekit-glib2-18 #MINVER#
  pk_task_user_declined@Base 0.9.4
  pk_task_what_provides_async@Base 0.9.4
  pk_task_what_provides_sync@Base 0.9.4
+ pk_task_wrapper_get_type@Base 1.2.1
+ pk_task_wrapper_new@Base 1.2.1
  pk_transaction_flag_bitfield_from_string@Base 0.9.4
  pk_transaction_flag_bitfield_to_string@Base 0.9.4
  pk_transaction_flag_enum_from_string@Base 0.9.4

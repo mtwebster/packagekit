@@ -324,7 +324,8 @@ static const PkEnumMatch enum_info[] = {
 	{PK_INFO_ENUM_DECOMPRESSING,		"decompressing"},
 	{PK_INFO_ENUM_UNTRUSTED,			"untrusted"},
 	{PK_INFO_ENUM_TRUSTED,				"trusted"},
-    {PK_INFO_ENUM_PURGING,         "purging"},
+	{PK_INFO_ENUM_CRITICAL,			"critical"},
+    {PK_INFO_ENUM_PURGING,          "purging"},
 	{0, NULL}
 };
 
@@ -1173,7 +1174,6 @@ pk_role_enum_to_localised_present (PkRoleEnum role)
 		text = dgettext("PackageKit", "Searching by name");
 		break;
 	case PK_ROLE_ENUM_REMOVE_PACKAGES:
-    case PK_ROLE_ENUM_PURGE_PACKAGES:
 		/* TRANSLATORS: The role of the transaction, in present tense */
 		text = dgettext("PackageKit", "Removing");
 		break;
@@ -1258,6 +1258,10 @@ pk_role_enum_to_localised_present (PkRoleEnum role)
 		/* TRANSLATORS: The role of the transaction, in present tense */
 		text = dgettext("PackageKit", "Getting system upgrades");
 		break;
+    case PK_ROLE_ENUM_PURGE_PACKAGES:
+        /* TRANSLATORS: The role of the transaction, in present tense */
+        text = dgettext("PackageKit", "Purging packages");
+        break;
 	default:
 		g_warning ("role unrecognised: %s", pk_role_enum_to_string (role));
 	}

@@ -484,6 +484,7 @@ string SourcesList::SourceRecord::repoId()
     ret += URI + " ";
     ret += Dist + " ";
     ret += joinedSections();
+
     return ret;
 }
 
@@ -660,7 +661,7 @@ ostream &operator<<(ostream &os, const SourcesList::SourceRecord &rec)
     return os;
 }
 
-ostream &operator<<(ostream &os, const SourcesList::VendorRecord &rec)
+ostream &operator <<(ostream &os, const SourcesList::VendorRecord &rec)
 {
     os << "VendorID: " << rec.VendorID << endl;
     os << "FingerPrint: " << rec.FingerPrint << endl;

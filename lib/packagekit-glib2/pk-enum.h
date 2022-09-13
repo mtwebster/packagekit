@@ -648,6 +648,7 @@ typedef enum {
  * @PK_INFO_ENUM_UNTRUSTED:
  * @PK_INFO_ENUM_TRUSTED:
  * @PK_INFO_ENUM_UNAVAILABLE: Package is unavailable
+ * @PK_INFO_ENUM_CRITICAL: Update severity is critical; Since: 1.2.4
  * @PK_INFO_ENUM_PURGING: Package is being purged
  * @PK_INFO_ENUM_LAST:
  *
@@ -681,6 +682,7 @@ typedef enum {
 	PK_INFO_ENUM_UNTRUSTED,
 	PK_INFO_ENUM_TRUSTED,
 	PK_INFO_ENUM_UNAVAILABLE,
+	PK_INFO_ENUM_CRITICAL,	/* Since: 1.2.4 */
     PK_INFO_ENUM_PURGING,
 	PK_INFO_ENUM_LAST
 } PkInfoEnum;
